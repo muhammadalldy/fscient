@@ -13,7 +13,7 @@ urlpatterns = [
 
     # ex: /polls/
     url(r'^$', views.index, name='index'),
-    url(r'^signup/$', core_views.signup, name='signup'),
+    url(r'^daftar/$', core_views.signup, name='signup'),
     # # ex: /polls/5/0
     url(r'^mahasiswa/(?P<id>[0-9]+)/$', views.detail, name='detail'),
     # # ex: /polls/5/results/
@@ -21,6 +21,8 @@ urlpatterns = [
     # # ex: /polls/5/vote/
     # url(r'^(?P<question_id>[0-9]+)/vote/$', views.vote, name='vote'),
 
+    url(r'^masuk/$', auth_views.login, name='login'),
+    url(r'^keluar/$', auth_views.logout, name='logout'),
 ]
 
 

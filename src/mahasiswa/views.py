@@ -27,8 +27,8 @@ def index(request):
     # return HttpResponse(output)
 
 def detail(request, id):
-    mhs   = Mahasiswa.objects.get(pk=id)
-    context = {'nama': mhs.nama, 'noreg': mhs.noreg, 'angkatan': mhs.angkatan, 'peminatan': mhs.peminatan}
+    mhs   = Profile.objects.get(pk=id)
+    context = {'nama': mhs.user, 'noreg': mhs.noreg, 'angkatan': mhs.angkatan, 'peminatan': mhs.peminatan}
     # output = ', '.join([q.nama for q in latest_question_list])
     return render(request, 'mahasiswa/mahasiswa_detail.html', context)
 
@@ -138,4 +138,4 @@ def signup(request):
             return redirect('/')
     else:
         form = SignUpForm()
-    return render(request, 'registrasi/signup.html', {'form': form})
+    return render(request, 'registration/signup.html', {'form': form})
