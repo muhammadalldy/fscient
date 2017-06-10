@@ -1,1 +1,44 @@
-Anggota
+{% extends 'mahasiswa/base.html' %}
+
+{% block content %}
+
+
+
+
+{% if latest_question_list %}
+
+<div class="container">
+  <h4 align="center">Anggota</h4>
+  <br/>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>No</th>
+        <th>Nama</th>
+        <th>NRM</th>
+        <th>Peminatan</th>
+        <th>Angkatan</th>
+      </tr>
+    </thead>
+    <tbody>
+        {% for q in latest_question_list %}
+        <tr>
+          <td>{{ q.id }}</td>
+          <td><a href="/profile/{{ q.id }}/">{{ q.user }}</a></td>
+          <td>{{ q.noreg }}</td>
+          <td>{{ q.peminatan }}</td>
+          <td>{{ q.angkatan }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% else %}
+  <p>Belum Ada Anggota.</p>
+{% endif %}
+
+
+
+{% endblock %}
+
+

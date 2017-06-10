@@ -8,21 +8,25 @@ from django.contrib.auth import views as auth_views
 
 
 urlpatterns = [
-    # url(r'^$', views.mahasiswa_list),
-    # url(r'^mahasiswa/(?P<pk>[0-9]+)/$', views.mahasiswa_detail),
+
+    # url(r'^anggota/$', views.anggota, name='anggota'),
+    url(r'anggota/', views.anggota, name='anggota'),
+    url(r'^profil/', views.profil, name='profil'),
+    url(r'^riset/', views.riset, name='riset'),
+    url(r'^ebook/', views.ebook, name='ebook'),
 
     # ex: /polls/
     url(r'^$', views.index, name='index'),
-    url(r'^daftar/$', core_views.signup, name='signup'),
+    url(r'^signup/$', core_views.signup, name='signup'),
     # # ex: /polls/5/0
-    url(r'^mahasiswa/(?P<id>[0-9]+)/$', views.detail, name='detail'),
+    url(r'^profile/(?P<id>[0-9]+)/$', views.detail, name='detail'),
     # # ex: /polls/5/results/
     # url(r'^(?P<question_id>[0-9]+)/results/$', views.results, name='results'),
     # # ex: /polls/5/vote/
     # url(r'^(?P<question_id>[0-9]+)/vote/$', views.vote, name='vote'),
 
-    url(r'^masuk/$', auth_views.login, name='login'),
-    url(r'^keluar/$', auth_views.logout, name='logout'),
+    url(r'^login/$', auth_views.login, name='login'),
+    url(r'^logout/$', auth_views.logout, name='logout'),
 ]
 
 

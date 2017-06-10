@@ -47,6 +47,29 @@ def daftar(request):
 def masuk(request):
     return render(request, 'mahasiswa/masuk.html')
 
+def anggota(request):
+    mahasiswa_list  = Profile.objects.all()
+    context = {'latest_question_list': mahasiswa_list}
+    return render(request, 'mahasiswa/anggota.html', context)
+
+
+def profil(request):
+    return render(request, 'mahasiswa/profil.html')
+
+def riset(request):
+    return render(request, 'mahasiswa/riset.html')
+
+def ebook(request):
+    return render(request, 'mahasiswa/ebook.html')
+
+
+
+
+
+
+
+
+
 
 
 @csrf_exempt
@@ -139,3 +162,10 @@ def signup(request):
     else:
         form = SignUpForm()
     return render(request, 'registration/signup.html', {'form': form})
+
+
+
+
+
+
+
