@@ -9,22 +9,40 @@ from mahasiswa.models import Mahasiswa
 from mahasiswa.serializers import MahasiswaSerializer
 from .models import Mahasiswa
 from .models import Profile
+from .models import Document
+from .models import Journal
 
 from django.contrib.auth import login, authenticate
 from django.contrib.auth.forms import UserCreationForm
 from django.shortcuts import render, redirect
 
 from forms import SignUpForm
+from forms import DocumentForm
+from forms import JournalForm
 
-def index(request):
-    mahasiswa_list  = Profile.objects.all()
+from django.conf import settings
+from django.core.files.storage import FileSystemStorage
+
+import os
+
+
+
+# def index(request):
+#     mahasiswa_list  = Profile.objects.all()
     # mhs             = Mahasiswa.objects.get(pk=id)
-    context = {'latest_question_list': mahasiswa_list}
+    # context = {'latest_question_list': mahasiswa_list}
     # output = ', '.join([q.nama for q in latest_question_list])
-    return render(request, 'mahasiswa/index.html', context)
+    # return render(request, 'mahasiswa/index.html', context)
     # latest_question_list = Mahasiswa.objects.order_by('-created')[:5]
     # output = ', '.join([q.nama for q in latest_question_list])
     # return HttpResponse(output)
+
+def index(request):
+    document_list  = Document.objects.all()
+    mahasiswa_list  = Profile.objects.all()
+    journal_list  = Journal.objects.all()
+    context = {'latest_question_list': mahasiswa_list,'latest_document_list': document_list,'latest_journal_list': journal_list}
+    return render(request, 'mahasiswa/index.html', context)
 
 def detail(request, id):
     mhs   = Profile.objects.get(pk=id)
@@ -61,6 +79,9 @@ def riset(request):
 
 def ebook(request):
     return render(request, 'mahasiswa/ebook.html')
+
+def kontak(request):
+    return render(request, 'mahasiswa/kontak.html')
 
 
 
@@ -164,6 +185,38 @@ def signup(request):
     return render(request, 'registration/signup.html', {'form': form})
 
 
+
+
+def model_form_upload(request):
+
+    if request.method == 'POST':
+        form = DocumentForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            return redirect('/')
+    else:
+        form = DocumentForm()
+
+
+    return render(request, 'mahasiswa/model_form_upload.html', {
+        'form': form
+    })
+
+
+def journal_form_upload(request):
+
+    if request.method == 'POST':
+        form = JournalForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            return redirect('/')
+    else:
+        form = JournalForm()
+
+
+    return render(request, 'mahasiswa/journal_form_upload.html', {
+        'form': form
+    })
 
 
 

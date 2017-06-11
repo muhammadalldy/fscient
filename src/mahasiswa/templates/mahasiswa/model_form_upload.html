@@ -1,0 +1,39 @@
+{% extends 'mahasiswa/base.html' %}
+
+{% block content %}
+
+
+
+<div class="container">
+  <div class="panel panel-default">
+    <div class="panel-heading">Upload Ebook</div>
+    <div class="panel-body">
+
+    Tulis <i>description</i> sebagai judul ebook.
+
+    	
+   <form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Upload</button>
+  </form>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+<div align="center">
+  <p><a href="{% url 'index' %}">halaman utama</a></p>
+</div>
+
+<!-- {% load static %}
+<img src="{% static "example.png" %}" alt="My image"/>
+
+<a href="{% static "documents/Muhamad_Aldiansyah_CV.pdf" %}">download</a>
+
+ -->
+
+{% endblock %}

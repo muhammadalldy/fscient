@@ -27,7 +27,12 @@ urlpatterns = [
 
     url(r'^login/$', auth_views.login, name='login'),
     url(r'^logout/$', auth_views.logout, name='logout'),
-]
+
+
+    url(r'^model_form_upload/$', views.model_form_upload, name='model_form_upload'),
+    url(r'^journal_form_upload/$', views.journal_form_upload, name='journal_form_upload'),
+    url(r'^kontak/$', views.kontak, name='kontak'),
+] 
 
 
 

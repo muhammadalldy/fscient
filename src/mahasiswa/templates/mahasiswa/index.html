@@ -5,6 +5,9 @@
     <div class="row">
       <div class="col-sm-4">
 
+      {% load static %}
+
+
 
         <h4>Anggota</h4>
   		{% if latest_question_list %}
@@ -15,17 +18,79 @@
   	    {% endfor %}
   		</ul> 
   		{% else %}
-  			<p>No polls are available.</p>
+  			<p>Belum ada data.</p>
   		{% endif %}
 
       </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
       <div class="col-sm-4">
         <h4>Riset</h4>
-        <p>Under Construction</p>
+      {% if latest_journal_list %}
+        <ul class="list-group">
+        {% for q in latest_journal_list %}
+            <li class="list-group-item"><a href="{% static q.journal %}">  {{ q.description }}</a></li>
+        {% endfor %}
+
+      </ul> 
+      {% else %}
+        <p>Belum ada data.</p>
+      {% endif %}
+
+          <p align="center"><a href="{% url 'journal_form_upload' %}">Upload Riset</a></p>
+
       </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
       <div class="col-sm-4">
         <h4>Ebook</h4>        
-        <p>Under Construction</p>
+
+      {% if latest_document_list %}
+        <ul class="list-group">
+        {% for q in latest_document_list %}
+            <li class="list-group-item"><a href="{% static q.document %}">  {{ q.description }}</a></li>
+        {% endfor %}
+
+      </ul> 
+      {% else %}
+        <p>Belum ada data.</p>
+      {% endif %}
+
+          <p align="center"><a href="{% url 'model_form_upload' %}">Upload Ebook</a></p>
+
       </div>
     </div>
   </div>
